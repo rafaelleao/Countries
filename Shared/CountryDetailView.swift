@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct CountryDetailView: View {
+struct CountryDetailView<VM>: View where VM: CountryDetailViewModel {
     @ObservedObject
-    var viewModel: CountryDetailViewModel
+    var viewModel: VM
 
     var body: some View {
         VStack {
@@ -22,21 +22,47 @@ struct CountryDetailView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(maxWidth: 120, maxHeight: 120)
 
+            list
+
+        }
+            .navigationBarTitle(viewModel.title, displayMode: .inline)
+    }
+
+    var list: some View {
         List {
             ForEach(viewModel.sections, id: \.title) { section in
                 Section(header: Text(section.title)) {
-                    ForEach(section.values, id: \.self) { value in
-                        Text(value)
+                    ForEach(section.values, id: \.value) { value in
+                        if let navigationLink = value.navigationLink  {
+                            NavigationLink(destination: {
+                                navigationLink
+                            }) {
+                                Text(value.value)
+                            }
+                        } else {
+                            Text(value.value)
+                        }
                     }
                 }
             }
         }
-        }.navigationBarTitle(viewModel.title, displayMode: .inline)
+    }
+}
+
+struct DynamicCountryDetailView: View {
+    @ObservedObject
+    var viewModel: DynamicCountryDetailViewModel
+
+    var body: some View {
+        CountryDetailView<DynamicCountryDetailViewModel>(viewModel: viewModel)
+            .onAppear {
+               viewModel.load()
+            }
     }
 }
 
 struct CountryDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        CountryDetailView(viewModel: CountryDetailViewModel(country: TestData.brazil))
+        CountryDetailView(viewModel: StaticCountryDetailViewModel(country: TestData.brazil))
     }
 }

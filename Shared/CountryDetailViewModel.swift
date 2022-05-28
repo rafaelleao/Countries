@@ -6,21 +6,83 @@
 //
 
 import Foundation
+import SwiftUI
+
+enum LinkType {
+    case country(code: String)
+    case language(language: String)
+}
 
 struct CountryDetailSection {
     let title: String
-    let values: [String]
+    let values: [CountryDetailSectionValue]
 }
 
+struct CountryDetailSectionValue {
+    let value: String
+    let navigationLink: AnyView?
+
+    init(_ value: String, navigationLink: AnyView? = nil) {
+        self.value = value
+        self.navigationLink = navigationLink
+    }
+}
+
+
 @MainActor
-class CountryDetailViewModel: ObservableObject {
+protocol CountryDetailViewModel: ObservableObject {
+
+    var title: String { get }
+    var flagURL: URL? { get }
+    var sections: [CountryDetailSection] { get }
+}
+
+class DynamicCountryDetailViewModel: CountryDetailViewModel {
+    let linkType: LinkType
+    let apiService = ApiService()
+
+    init(linkType: LinkType) {
+        self.linkType = linkType
+    }
+
+    var title: String = ""
+
+    var flagURL: URL?
+
+    var sections: [CountryDetailSection] = []
+
+    func load() {
+        Task {
+            switch linkType {
+            case .country(let code):
+                let results = try await apiService.searchCountryCode(code)
+                if let country = results.first {
+                    update(country: country)
+                }
+            default:
+                break
+            }
+        }
+    }
+
+    private func update(country: Country) {
+        title =  country.name.common
+        sections = SectionBuilder().buildSections(country: country)
+        if let urlString = country.flags["png"] {
+            flagURL = URL(string: urlString)
+        }
+        objectWillChange.send()
+    }
+}
+
+class StaticCountryDetailViewModel: CountryDetailViewModel {
 
     let country: Country
     let sections: [CountryDetailSection]
 
     init(country: Country) {
         self.country = country
-        self.sections = CountryDetailViewModel.buildSections(country: country)
+        self.sections = SectionBuilder().buildSections(country: country)
     }
 
     var title: String {
@@ -33,23 +95,36 @@ class CountryDetailViewModel: ObservableObject {
         }
         return nil
     }
+}
 
-    private static func buildSections(country: Country) -> [CountryDetailSection] {
+@MainActor
+struct SectionBuilder {
+    func buildSections(country: Country) -> [CountryDetailSection] {
         var sections = [CountryDetailSection]()
-        sections.append(CountryDetailSection(title: "Name", values: [country.name.official]))
-        sections.append(CountryDetailSection(title: "Population", values: ["\(country.population)"]))
+        sections.append(CountryDetailSection(title: "Name", values: [CountryDetailSectionValue(country.name.official)]))
+        sections.append(CountryDetailSection(title: "Population", values: [CountryDetailSectionValue(String(country.population))]))
         if let capital = country.capital?.first {
-            sections.append(CountryDetailSection(title: "Capital", values: [capital]))
+            let section = CountryDetailSection(title: "Capital", values: [CountryDetailSectionValue(capital)])
+            sections.append(section)
         }
-        sections.append(CountryDetailSection(title: "Region", values: [country.region]))
+        sections.append(CountryDetailSection(title: "Region", values: [CountryDetailSectionValue(country.region)]))
         if let subregion = country.subregion {
-            sections.append(CountryDetailSection(title: "Subregion", values: [subregion]))
+            let section = CountryDetailSection(title: "Subregion", values: [CountryDetailSectionValue(subregion)])
+            sections.append(section)
         }
         if let languages = country.languages {
-            sections.append(CountryDetailSection(title: "Languages", values: languages.values.reversed()))
+            let values: [CountryDetailSectionValue] = languages.values.map { language in
+                let view = AnyView(CountriesList(viewModel: DynamicCountriesListViewModel(linkType: .language(language: language))))
+                return CountryDetailSectionValue(language, navigationLink: view)
+            }
+            sections.append(CountryDetailSection(title: "Languages", values: values))
         }
         if let borders = country.borders {
-            sections.append(CountryDetailSection(title: "Borders", values: borders))
+            let values: [CountryDetailSectionValue] = borders.map { border in
+                let view = AnyView(DynamicCountryDetailView(viewModel: DynamicCountryDetailViewModel(linkType: .country(code: border))))
+                return CountryDetailSectionValue(border, navigationLink: view)
+            }
+            sections.append(CountryDetailSection(title: "Borders", values: values))
         }
 
         return sections

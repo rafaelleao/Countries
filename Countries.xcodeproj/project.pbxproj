@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		139618122842EE82009BAF81 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1396180928423F4B009BAF81 /* TestData.swift */; };
+		139618132842EE83009BAF81 /* TestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1396180928423F4B009BAF81 /* TestData.swift */; };
+		139618142842EE8B009BAF81 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139617F828418AD7009BAF81 /* CountryDetailView.swift */; };
+		139618152842EE8B009BAF81 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139617F828418AD7009BAF81 /* CountryDetailView.swift */; };
+		139618162842EE8F009BAF81 /* CountryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139617FB28418B19009BAF81 /* CountryDetailViewModel.swift */; };
+		139618172842EE90009BAF81 /* CountryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139617FB28418B19009BAF81 /* CountryDetailViewModel.swift */; };
 		13B9BFDC28401E5D00D13338 /* CountriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B9BFCC28401E5B00D13338 /* CountriesApp.swift */; };
 		13B9BFDD28401E5D00D13338 /* CountriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B9BFCC28401E5B00D13338 /* CountriesApp.swift */; };
 		13B9BFDE28401E5D00D13338 /* CountriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B9BFCD28401E5B00D13338 /* CountriesList.swift */; };
@@ -187,9 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1396180728423EEE009BAF81 /* mauritius.json in Resources */,
 				13B9BFE028401E5D00D13338 /* Assets.xcassets in Resources */,
-				1396180428423118009BAF81 /* brazil.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,9 +201,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1396180828423EEE009BAF81 /* mauritius.json in Resources */,
 				13B9BFE128401E5D00D13338 /* Assets.xcassets in Resources */,
-				1396180528423118009BAF81 /* brazil.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,14 +212,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				139617F928418AD7009BAF81 /* CountryDetailView.swift in Sources */,
+				139618142842EE8B009BAF81 /* CountryDetailView.swift in Sources */,
 				13B9BFEE284028E700D13338 /* Country.swift in Sources */,
+				139618172842EE90009BAF81 /* CountryDetailViewModel.swift in Sources */,
 				13B9BFF928416EF800D13338 /* ApiService.swift in Sources */,
-				1396180A28423F4B009BAF81 /* TestData.swift in Sources */,
 				13B9BFDE28401E5D00D13338 /* CountriesList.swift in Sources */,
+				139618132842EE83009BAF81 /* TestData.swift in Sources */,
 				13B9BFEB2840243300D13338 /* CountriesListViewModel.swift in Sources */,
 				13B9BFDC28401E5D00D13338 /* CountriesApp.swift in Sources */,
-				139617FC28418B19009BAF81 /* CountryDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +227,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				139617FA28418AD7009BAF81 /* CountryDetailView.swift in Sources */,
+				139618152842EE8B009BAF81 /* CountryDetailView.swift in Sources */,
 				13B9BFEF284028E700D13338 /* Country.swift in Sources */,
+				139618162842EE8F009BAF81 /* CountryDetailViewModel.swift in Sources */,
 				13B9BFFA28416EF800D13338 /* ApiService.swift in Sources */,
-				1396180B28423F4B009BAF81 /* TestData.swift in Sources */,
 				13B9BFDF28401E5D00D13338 /* CountriesList.swift in Sources */,
+				139618122842EE82009BAF81 /* TestData.swift in Sources */,
 				13B9BFEC2840243300D13338 /* CountriesListViewModel.swift in Sources */,
 				13B9BFDD28401E5D00D13338 /* CountriesApp.swift in Sources */,
-				139617FD28418B19009BAF81 /* CountryDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

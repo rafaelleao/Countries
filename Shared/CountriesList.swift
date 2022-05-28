@@ -13,20 +13,9 @@ struct CountriesList: View {
     var viewModel: CountriesListViewModel
 
     var body: some View {
-        NavigationView {
-            List(viewModel.results, id: \.name.common) { country in
-                NavigationLink(destination: CountryDetailView(viewModel: CountryDetailViewModel(country: country))) {
-                    HStack {
-                        Text(country.flag ?? "")
-                        Text(country.name.common)
-                            .bold()
-                    }
-                }
-            }
-        }
+            list
+        
         .searchable(text: $viewModel.searchString, placement: .navigationBarDrawer(displayMode: .always))
-        .navigationViewStyle(StackNavigationViewStyle())
-        .edgesIgnoringSafeArea(.top)
         .refreshable {
             await viewModel.loadData()
         }
@@ -36,6 +25,18 @@ struct CountriesList: View {
             }
         }
         .navigationTitle("Countries")
+    }
+
+    var list: some View {
+        List(viewModel.results, id: \.name.common) { country in
+            NavigationLink(destination: CountryDetailView(viewModel: StaticCountryDetailViewModel(country: country))) {
+                HStack {
+                    Text(country.flag ?? "")
+                    Text(country.name.common)
+                        .bold()
+                }
+            }
+        }
     }
 }
 

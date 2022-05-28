@@ -10,7 +10,7 @@ import Foundation
 @MainActor
 class CountriesListViewModel: ObservableObject {
 
-    private var countries: [Country] = [] {
+    var countries: [Country] = [] {
         didSet {
             filter()
         }
@@ -38,9 +38,35 @@ class CountriesListViewModel: ObservableObject {
                 results = countries
             } else {
                 results = countries.filter({ country in
-                    country.name.official.contains(searchString)
+                    country.name.official.lowercased().contains(searchString.lowercased())
                 })
             }
+        }
+    }
+}
+
+@MainActor
+class DynamicCountriesListViewModel: CountriesListViewModel {
+
+    let linkType: LinkType
+
+    init(linkType: LinkType) {
+        self.linkType = linkType
+        super.init()
+    }
+
+    override func loadData() async {
+        switch linkType {
+        case .country(let code):
+            break
+        case .language(let language):
+            await searchLanguage(language)
+        }
+    }
+
+    private func searchLanguage(_ language: String) async {
+        if let result = try? await apiService.searchLanguage(language) {
+            countries = result
         }
     }
 }

@@ -11,7 +11,11 @@ import SwiftUI
 struct CountriesApp: App {
     var body: some Scene {
         WindowGroup {
-            CountriesList(viewModel: CountriesListViewModel())
+            NavigationView {
+                CountriesList(viewModel: CountriesListViewModel())
+            }
+                .edgesIgnoringSafeArea(.top)
+                .navigationViewStyle(StackNavigationViewStyle())
         }
     }
 }
