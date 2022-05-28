@@ -22,6 +22,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		139617F828418AD7009BAF81 /* CountryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailView.swift; sourceTree = "<group>"; };
+		139617FB28418B19009BAF81 /* CountryDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailViewModel.swift; sourceTree = "<group>"; };
+		1396180328423118009BAF81 /* brazil.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = brazil.json; sourceTree = "<group>"; };
+		1396180628423EEE009BAF81 /* mauritius.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = mauritius.json; sourceTree = "<group>"; };
+		1396180928423F4B009BAF81 /* TestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestData.swift; sourceTree = "<group>"; };
 		13B9BFCC28401E5B00D13338 /* CountriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesApp.swift; sourceTree = "<group>"; };
 		13B9BFCD28401E5B00D13338 /* CountriesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesList.swift; sourceTree = "<group>"; };
 		13B9BFCE28401E5D00D13338 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +56,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1396180228423118009BAF81 /* DevelopmentAssets */ = {
+			isa = PBXGroup;
+			children = (
+				1396180328423118009BAF81 /* brazil.json */,
+				1396180628423EEE009BAF81 /* mauritius.json */,
+				1396180928423F4B009BAF81 /* TestData.swift */,
+			);
+			path = DevelopmentAssets;
+			sourceTree = "<group>";
+		};
 		13B9BFC628401E5A00D13338 = {
 			isa = PBXGroup;
 			children = (
@@ -63,12 +78,15 @@
 		13B9BFCB28401E5B00D13338 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				1396180228423118009BAF81 /* DevelopmentAssets */,
 				13B9BFF828416EF800D13338 /* ApiService.swift */,
 				13B9BFCE28401E5D00D13338 /* Assets.xcassets */,
 				13B9BFCC28401E5B00D13338 /* CountriesApp.swift */,
 				13B9BFCD28401E5B00D13338 /* CountriesList.swift */,
 				13B9BFEA2840243300D13338 /* CountriesListViewModel.swift */,
 				13B9BFED284028E700D13338 /* Country.swift */,
+				139617F828418AD7009BAF81 /* CountryDetailView.swift */,
+				139617FB28418B19009BAF81 /* CountryDetailViewModel.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -169,7 +187,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1396180728423EEE009BAF81 /* mauritius.json in Resources */,
 				13B9BFE028401E5D00D13338 /* Assets.xcassets in Resources */,
+				1396180428423118009BAF81 /* brazil.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,7 +197,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1396180828423EEE009BAF81 /* mauritius.json in Resources */,
 				13B9BFE128401E5D00D13338 /* Assets.xcassets in Resources */,
+				1396180528423118009BAF81 /* brazil.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,11 +210,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				139617F928418AD7009BAF81 /* CountryDetailView.swift in Sources */,
 				13B9BFEE284028E700D13338 /* Country.swift in Sources */,
 				13B9BFF928416EF800D13338 /* ApiService.swift in Sources */,
+				1396180A28423F4B009BAF81 /* TestData.swift in Sources */,
 				13B9BFDE28401E5D00D13338 /* CountriesList.swift in Sources */,
 				13B9BFEB2840243300D13338 /* CountriesListViewModel.swift in Sources */,
 				13B9BFDC28401E5D00D13338 /* CountriesApp.swift in Sources */,
+				139617FC28418B19009BAF81 /* CountryDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,11 +225,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				139617FA28418AD7009BAF81 /* CountryDetailView.swift in Sources */,
 				13B9BFEF284028E700D13338 /* Country.swift in Sources */,
 				13B9BFFA28416EF800D13338 /* ApiService.swift in Sources */,
+				1396180B28423F4B009BAF81 /* TestData.swift in Sources */,
 				13B9BFDF28401E5D00D13338 /* CountriesList.swift in Sources */,
 				13B9BFEC2840243300D13338 /* CountriesListViewModel.swift in Sources */,
 				13B9BFDD28401E5D00D13338 /* CountriesApp.swift in Sources */,
+				139617FD28418B19009BAF81 /* CountryDetailViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
