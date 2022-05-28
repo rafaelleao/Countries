@@ -10,10 +10,21 @@ import Foundation
 @MainActor
 class CountriesListViewModel: ObservableObject {
 
-    @Published
-    var countries: [Country] = []
-
+    private var countries: [Country] = [] {
+        didSet {
+            filter()
+        }
+    }
     let apiService = ApiService()
+
+    @Published
+    var results: [Country] = []
+
+    var searchString: String = "" {
+        didSet {
+            filter()
+        }
+    }
 
     func loadData() async {
         if let objects = try? await apiService.loadCountries() {
@@ -21,4 +32,15 @@ class CountriesListViewModel: ObservableObject {
         }
     }
 
+    func filter() {
+        Task(priority: .low) {
+            if searchString.isEmpty {
+                results = countries
+            } else {
+                results = countries.filter({ country in
+                    country.name.official.contains(searchString)
+                })
+            }
+        }
+    }
 }

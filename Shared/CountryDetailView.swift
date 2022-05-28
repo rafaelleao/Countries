@@ -13,14 +13,14 @@ struct CountryDetailView: View {
 
     var body: some View {
         VStack {
-        AsyncImage(url: viewModel.flagURL) { image in
-            image.resizable()
-        } placeholder: {
-            ProgressView()
-        }
-            .shadow(radius: 10)
-            .aspectRatio(contentMode: .fit)
-            .frame(maxWidth: 120, maxHeight: 120)
+            AsyncImage(url: viewModel.flagURL) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
+            }
+                .shadow(radius: 10)
+                .aspectRatio(contentMode: .fit)
+                .frame(maxWidth: 120, maxHeight: 120)
 
         List {
             ForEach(viewModel.sections, id: \.title) { section in

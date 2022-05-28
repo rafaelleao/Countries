@@ -48,6 +48,10 @@ class CountryDetailViewModel: ObservableObject {
         if let languages = country.languages {
             sections.append(CountryDetailSection(title: "Languages", values: languages.values.reversed()))
         }
+        if let borders = country.borders {
+            sections.append(CountryDetailSection(title: "Borders", values: borders))
+        }
+
         return sections
     }
 }

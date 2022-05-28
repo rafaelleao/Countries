@@ -14,21 +14,19 @@ struct CountriesList: View {
 
     var body: some View {
         NavigationView {
-            List(viewModel.countries, id: \.name.common) { country in
-
+            List(viewModel.results, id: \.name.common) { country in
                 NavigationLink(destination: CountryDetailView(viewModel: CountryDetailViewModel(country: country))) {
                     HStack {
                         Text(country.flag ?? "")
                         Text(country.name.common)
                             .bold()
-                    }                }
-
-
+                    }
+                }
             }
         }
+        .searchable(text: $viewModel.searchString, placement: .navigationBarDrawer(displayMode: .always))
         .navigationViewStyle(StackNavigationViewStyle())
         .edgesIgnoringSafeArea(.top)
-
         .refreshable {
             await viewModel.loadData()
         }
@@ -50,13 +48,12 @@ struct ContentView_Previews: PreviewProvider {
 class PreviewCountriesListViewModel: CountriesListViewModel {
     override init() {
         super.init()
-        countries = [
+        results = [
             TestData.brazil,
             TestData.mauritius
         ]
     }
 
     override func loadData() async {
-
     }
 }
