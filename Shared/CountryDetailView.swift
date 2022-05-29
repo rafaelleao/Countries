@@ -7,25 +7,31 @@
 
 import SwiftUI
 
-struct CountryDetailView<VM>: View where VM: CountryDetailViewModel {
+struct CountryDetailView<ViewModel>: View where ViewModel: CountryDetailViewModel {
     @ObservedObject
-    var viewModel: VM
+    var viewModel: ViewModel
 
     var body: some View {
         VStack {
-            AsyncImage(url: viewModel.flagURL) { image in
-                image.resizable()
-            } placeholder: {
-                ProgressView()
-            }
-                .shadow(radius: 10)
-                .aspectRatio(contentMode: .fit)
-                .frame(maxWidth: 120, maxHeight: 120)
-
+            flagImage
             list
-
         }
-            .navigationBarTitle(viewModel.title, displayMode: .inline)
+    #if os(iOS)
+        .navigationBarTitle(viewModel.title, displayMode: .inline)
+    #else
+        .navigationTitle(viewModel.title)
+    #endif
+    }
+
+    var flagImage: some View {
+        AsyncImage(url: viewModel.flagURL) { image in
+            image.resizable()
+        } placeholder: {
+            ProgressView()
+        }
+        .shadow(radius: 10)
+        .aspectRatio(contentMode: .fit)
+        .frame(maxWidth: 120, maxHeight: 120)
     }
 
     var list: some View {
@@ -56,7 +62,7 @@ struct DynamicCountryDetailView: View {
     var body: some View {
         CountryDetailView<DynamicCountryDetailViewModel>(viewModel: viewModel)
             .onAppear {
-               viewModel.load()
+                viewModel.load()
             }
     }
 }

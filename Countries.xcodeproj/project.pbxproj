@@ -13,6 +13,10 @@
 		139618152842EE8B009BAF81 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139617F828418AD7009BAF81 /* CountryDetailView.swift */; };
 		139618162842EE8F009BAF81 /* CountryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139617FB28418B19009BAF81 /* CountryDetailViewModel.swift */; };
 		139618172842EE90009BAF81 /* CountryDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139617FB28418B19009BAF81 /* CountryDetailViewModel.swift */; };
+		1396181828437FF9009BAF81 /* brazil.json in Resources */ = {isa = PBXBuildFile; fileRef = 1396180328423118009BAF81 /* brazil.json */; };
+		1396181928437FFA009BAF81 /* brazil.json in Resources */ = {isa = PBXBuildFile; fileRef = 1396180328423118009BAF81 /* brazil.json */; };
+		1396181A28437FFD009BAF81 /* mauritius.json in Resources */ = {isa = PBXBuildFile; fileRef = 1396180628423EEE009BAF81 /* mauritius.json */; };
+		1396181B28437FFD009BAF81 /* mauritius.json in Resources */ = {isa = PBXBuildFile; fileRef = 1396180628423EEE009BAF81 /* mauritius.json */; };
 		13B9BFDC28401E5D00D13338 /* CountriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B9BFCC28401E5B00D13338 /* CountriesApp.swift */; };
 		13B9BFDD28401E5D00D13338 /* CountriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B9BFCC28401E5B00D13338 /* CountriesApp.swift */; };
 		13B9BFDE28401E5D00D13338 /* CountriesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13B9BFCD28401E5B00D13338 /* CountriesList.swift */; };
@@ -193,7 +197,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1396181A28437FFD009BAF81 /* mauritius.json in Resources */,
 				13B9BFE028401E5D00D13338 /* Assets.xcassets in Resources */,
+				1396181928437FFA009BAF81 /* brazil.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,7 +207,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1396181B28437FFD009BAF81 /* mauritius.json in Resources */,
 				13B9BFE128401E5D00D13338 /* Assets.xcassets in Resources */,
+				1396181828437FF9009BAF81 /* brazil.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

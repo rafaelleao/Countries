@@ -13,9 +13,12 @@ struct CountriesList: View {
     var viewModel: CountriesListViewModel
 
     var body: some View {
-            list
-        
-        .searchable(text: $viewModel.searchString, placement: .navigationBarDrawer(displayMode: .always))
+        list
+    #if os(iOS)
+            .searchable(text: $viewModel.searchString, placement: .navigationBarDrawer(displayMode: .always))
+    #else
+            .searchable(text: $viewModel.searchString, placement: .sidebar)
+    #endif
         .refreshable {
             await viewModel.loadData()
         }

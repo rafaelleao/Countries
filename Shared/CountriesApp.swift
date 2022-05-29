@@ -15,7 +15,9 @@ struct CountriesApp: App {
                 CountriesList(viewModel: CountriesListViewModel())
             }
                 .edgesIgnoringSafeArea(.top)
-                .navigationViewStyle(StackNavigationViewStyle())
+                #if os(iOS)
+                    .navigationViewStyle(StackNavigationViewStyle())
+                #endif
         }
     }
 }
