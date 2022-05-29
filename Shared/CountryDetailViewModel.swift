@@ -11,6 +11,7 @@ import SwiftUI
 enum LinkType {
     case country(code: String)
     case language(language: String)
+    case currency(code: String)
 }
 
 struct CountryDetailSection {
@@ -114,10 +115,26 @@ struct SectionBuilder {
         }
         if let languages = country.languages {
             let values: [CountryDetailSectionValue] = languages.values.map { language in
-                let view = AnyView(CountriesList(viewModel: DynamicCountriesListViewModel(linkType: .language(language: language))))
+                let viewModel = DynamicCountriesListViewModel(linkType: .language(language: language), title: "\(language) speaking countries")
+                let view = AnyView(CountriesList(viewModel: viewModel))
                 return CountryDetailSectionValue(language, navigationLink: view)
             }
             sections.append(CountryDetailSection(title: "Languages", values: values))
+        }
+
+        if let currencies = country.currencies {
+            //for (code, currency) in currencies.enumerated() {
+            var values: [CountryDetailSectionValue] = []
+            for (code, currency) in currencies {
+                let viewModel = DynamicCountriesListViewModel(linkType: .currency(code: code), title: currency.name)
+                let view = AnyView(CountriesList(viewModel: viewModel))
+                var title = currency.name
+                if let symbol = currency.symbol {
+                    title += " (\(symbol))"
+                }
+                values.append(CountryDetailSectionValue(title, navigationLink: view))
+            }
+            sections.append(CountryDetailSection(title: "Currencies", values: values))
         }
         if let borders = country.borders {
             let values: [CountryDetailSectionValue] = borders.map { border in

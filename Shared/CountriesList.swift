@@ -19,15 +19,22 @@ struct CountriesList: View {
     #else
             .searchable(text: $viewModel.searchString, placement: .sidebar)
     #endif
-        .refreshable {
-            await viewModel.loadData()
-        }
-        .onAppear {
-            Task {
+            .refreshable {
                 await viewModel.loadData()
             }
-        }
-        .navigationTitle("Countries")
+            .onAppear {
+                Task {
+                    await viewModel.loadData()
+                }
+            }
+            .toolbar {
+                Button(action: {
+                    viewModel.toggleSort()
+                  }) {
+                      Image(systemName: viewModel.sortButtonImage).imageScale(.large)
+                  }
+            }
+            .navigationTitle(viewModel.title)
     }
 
     var list: some View {

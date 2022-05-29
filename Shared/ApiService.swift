@@ -35,12 +35,21 @@ class ApiService {
         try await request(parameter: "alpha/\(code)")
     }
 
+    func searchCurrency(_ code: String) async throws -> [Country] {
+        try await request(parameter: "currency/\(code)")
+    }
+
     private func request(parameter: String) async throws -> [Country] {
         guard let url = URL(string: baseUrl + parameter) else {
             throw RuntimeError("Invalid URL")
         }
-        let (data, _) = try await URLSession.shared.data(from: url)
-        let objects = try JSONDecoder().decode([Country].self, from: data)
-        return objects
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let objects = try JSONDecoder().decode([Country].self, from: data)
+            return objects
+        } catch {
+            print(error)
+            throw error
+        }
     }
 }

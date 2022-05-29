@@ -17,6 +17,11 @@ enum ImageType: String, Decodable {
     case svg
 }
 
+struct Currency: Decodable {
+    let name: String
+    let symbol: String?
+}
+
 struct Country: Decodable {
     let name: Name
     let flag: String?
@@ -28,14 +33,16 @@ struct Country: Decodable {
     let region: String
     let subregion: String?
     let maps: [String: String]
-
-    //let fifa: String
+    let currencies: [String: Currency]?
 }
-/*
-extension Country: Identifiable {
-    var id: ObjectIdentifier {
-        ObjectIdentifier(fifa.hashValue)
+
+extension Country: Comparable {
+    static func < (lhs: Country, rhs: Country) -> Bool {
+        lhs.name.common < rhs.name.common
+    }
+
+    static func == (lhs: Country, rhs: Country) -> Bool {
+        lhs.name.common == rhs.name.common
     }
 }
 
-*/
